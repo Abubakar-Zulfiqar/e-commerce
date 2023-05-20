@@ -1,0 +1,110 @@
+.about-info {
+    display: grid;
+    grid-template-columns: 35% 50%;
+    gap: 15%;
+    margin-bottom: 5rem;
+}
+
+.info-heading {
+    color: rgb(81 56 238)
+}
+
+.info-img img {
+    max-width: 600px;
+    max-height: 300px;
+    transition: all 400ms ease;
+}
+
+.info-img img:hover {
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.779);
+}
+
+.features {
+    grid-template-rows: repeat(3, 1fr);
+    gap: 0.5rem;
+    margin-bottom: 10rem;
+}
+
+.img-cover img {
+    max-width: 600px;
+    max-height: 300px;
+    transition: all 500ms ease-in-out;
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.198) 0px 1px 2px 0px;
+}
+
+.img-cover img:hover {
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.494);
+    transform: scale(1.2);
+}
+
+.services {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.8rem;
+}
+
+.services h3 {
+    margin-top: 1.4rem;
+    font-size: 1.5rem;
+    font-weight: 400;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.services-1,
+.services-3 {
+    width: auto;
+    height: 17rem;
+    display: flex;
+    flex-direction: column;
+    place-content: center;
+    border-radius: 2rem;
+    text-align: center;
+    box-shadow: rgba(0, 0, 0, 0.557) 0px 1px 2px 0px;
+    background: rgb(246, 248, 250);
+}
+
+.icon-2,
+.icon-3 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-radius: 2rem;
+    width: auto;
+    height: 8rem;
+    background: rgb(246, 248, 250);
+    box-shadow: rgba(0, 0, 0, 0.439) 0px 1px 2px 0px;
+}
+
+.icon-3 {
+    margin-top: 1rem;
+}
+
+.services-icon {
+    width: 4rem;
+    height: 4rem;
+    padding: 0.5rem;
+    border-radius: 50%;
+    background-color: rgb(255, 255, 255);
+    color: rgb(81, 56, 238);
+}
+
+.trusted {
+    max-width: 100rem;
+    padding: 0px auto;
+    text-align: center;
+}
+
+.trusted h3 {
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+}
+
+.trusted-1,
+.trusted-2,
+.trusted-3,
+.trusted-4 {
+    font-size: 2rem;
+}

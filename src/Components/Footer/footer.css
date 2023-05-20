@@ -1,0 +1,39 @@
+.footer {
+    background-color: black;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    flex-direction: column;
+    font-family: 'Poppins', sans-serif;
+    margin-top: 15rem;
+    min-height: 50vh;
+}
+
+.about {
+    display: flex;
+    flex-direction: row;
+}
+
+.about-child {
+    text-align: center;
+    width: 300px;
+    margin: auto;
+    margin-bottom: 5rem;
+}
+
+.icons {
+    display: flex;
+}
+
+.icon {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 3rem;
+    padding: 0.5rem;
+    border: 1px solid white;
+    border-radius: 50%;
+    display: flex;
+    margin-left: 2.5rem;
+    cursor: pointer;
+}
