@@ -1,3 +1,4 @@
+import React from 'react'
 import { Routes, Route } from 'react-router-dom'
 
 import {
@@ -6,10 +7,7 @@ import {
   Products,
   Contact,
   Cart,
-  Product01,
-  Product02,
-  Product03,
-  Product04
+  ProductDetail
 }
   from './Components/index'
 
@@ -22,10 +20,7 @@ const App = () => {
         <Route exact path='/products' element={<Products />} />
         <Route exact path='/contact' element={<Contact />} />
         <Route exact path='/cart' element={<Cart />} />
-        <Route exact path='/p1/' element={<Product01 />} />
-        <Route exact path='/p2/' element={<Product02 />} />
-        <Route exact path='/p3/' element={<Product03 />} />
-        <Route exact path='/p/:id' element={<Product04 />} />
+        <Route exact path='/product/:id' element={<ProductDetail />} />
       </Routes>
     </>
   )

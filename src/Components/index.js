@@ -3,10 +3,7 @@ import About from './About/About'
 import Products from './Products/Products'
 import Contact from './Contact/Contact'
 import Cart from './Cart/Cart'
-import Product01 from './Products/Product01'
-import Product02 from './Products/Product02'
-import Product03 from './Products/Product03'
-import Product04 from './Products/Product04'
+import ProductDetail from './Products/ProductDetail'
 
 export {
     Home,
@@ -14,8 +11,5 @@ export {
     Products,
     Contact,
     Cart,
-    Product01,
-    Product02,
-    Product03,
-    Product04
+    ProductDetail
 }

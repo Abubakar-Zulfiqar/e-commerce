@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
 import { Card, Col, Container, Form, Row } from 'react-bootstrap'
-import { BsFillGridFill, BsList } from 'react-icons/bs'
 
 import Header from '../Header/Header'
 import Footer from '../Footer/Footer'
@@ -18,7 +17,7 @@ const Products = () => {
 
     useEffect(() => {
         axios
-            .get(`http://localhost:3000/products?q=${search}`)
+            .get(`http://localhost:3001/products?q=${search}`)
             .then((res) => setData(res.data))
             .catch((err) => console.log('wrong in get method', err))
     }, [search])
@@ -28,28 +27,28 @@ const Products = () => {
     const filteredProducts = data.filter(
         (product) =>
             selectedCategory === 'all' ||
-            product.category === selectedCategory ||
-            product.brand === selectedCategory ||
-            product.color === selectedCategory ||
-            product.price >= minPrice && product.price <= maxPrice
+            (product.category === selectedCategory) ||
+            (product.brand === selectedCategory) ||
+            (product.color === selectedCategory) ||
+            (product.price >= minPrice && product.price <= maxPrice)
     )
 
     const uniqueCategory = []
-    data.map((items) => {
+    data.forEach((items) => {
         if (uniqueCategory.indexOf(items.category) === -1) {
             uniqueCategory.push(items.category)
         }
     })
 
     const uniqueBrand = []
-    data.map((items) => {
+    data.forEach((items) => {
         if (uniqueBrand.indexOf(items.brand) === -1) {
             uniqueBrand.push(items.brand)
         }
     })
 
     const uniqueColor = []
-    data.map((items) => {
+    data.forEach((items) => {
         if (uniqueColor.indexOf(items.color) === -1) {
             uniqueColor.push(items.color)
         }
@@ -147,7 +146,7 @@ const Products = () => {
                                 <Card
                                     className='product-card'
                                     key={i}
-                                    onClick={() => navigate(`/p/${x.id}`)}
+                                    onClick={() => navigate(`/product/${x.id}`)}
                                 >
                                     <Card.Body>
                                         <Card.Title>{x.name}</Card.Title>

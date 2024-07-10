@@ -1,6 +1,6 @@
-import React, { useEffect, useState, useContext } from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
-import { Button, Card, Container, Table } from 'react-bootstrap'
+import { Button, Card, Container } from 'react-bootstrap'
 
 import { CartContext } from '../Context/CartContext '
 import Header from '../Header/Header'

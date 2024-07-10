@@ -1,48 +1,64 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect, useState, useContext } from 'react'
+import { Link, useParams } from 'react-router-dom'
+import axios from 'axios'
 
-import { Button, Col, Container, Row } from 'react-bootstrap'
+import { Button, Col, Container, Row, Form } from 'react-bootstrap'
 import { AiFillStar, AiOutlineStar } from 'react-icons/ai'
 import { TbReplace, TbTruckDelivery } from 'react-icons/tb'
 import { MdOutlineSecurity } from 'react-icons/md'
 
+import { CartContext } from '../Context/CartContext '
 import Header from '../Header/Header'
 import Footer from '../Footer/Footer'
-import Image01 from './images/iphone 01.jpg'
-import Image02 from './images/iphone 02.jpg'
-import Image03 from './images/iphone 03.jpg'
-import Image04 from './images/iphone 04.jpg'
 
 import './products.css'
 
-const Product01 = () => {
-    const [selectedColor, setSelectedColor] = useState('grey')
+const ProductDetail = () => {
+    const { id } = useParams()
+    const { addItem } = useContext(CartContext)
+
+    const [data, setData] = useState([])
     const [count, setCount] = useState(0)
+    const [selectedColor, setSelectedColor] = useState('grey')
+
+    const getProduct = async () => {
+        try {
+            const user = await axios.get(`http://localhost:3001/products/${id}`)
+            setData(user.data)
+        } catch (err) {
+            alert('Not getting id')
+        }
+    }
+
+    useEffect(() => {
+        getProduct()
+    }, [])
 
     return (
         <>
             <Header />
             <h2 className='heading-01'>
-                <Link to='/'>Home</Link>/ IPhone X
+                <Link to='/'>Home</Link>/ {data.name}
             </h2>
             <Container>
+
                 <Row className='main'>
-                    <Col>
+                    <Col sm={2}>
                         <div className='product-images'>
-                            <img src={Image01} alt='' />
-                            <img src={Image02} alt='' />
-                            <img src={Image03} alt='' />
-                            <img src={Image04} alt='' />
+                            <img src={data?.image1 ? require(`./images/${data.image1}`) : null} alt='' />
+                            <img src={data?.image2 ? require(`./images/${data.image2}`) : null} alt='' />
+                            <img src={data?.image3 ? require(`./images/${data.image3}`) : null} alt='' />
+                            <img src={data?.image4 ? require(`./images/${data.image4}`) : null} alt='' />
                         </div>
                     </Col>
-                    <Col>
-                        <div className='product-image me-5'>
-                            <img src={Image01} alt='' />
+                    <Col sm={6}>
+                        <div className='product-image'>
+                            <img src={data?.image1 ? require(`./images/${data.image1}`) : null} alt='' />
                         </div>
                     </Col>
-                    <Col>
+                    <Col sm={4}>
                         <div className='product-details ms-5'>
-                            <h3>IPhone X</h3>
+                            <h3>{data.name}</h3>
                             <AiFillStar />
                             <AiFillStar />
                             <AiFillStar />
@@ -51,16 +67,11 @@ const Product01 = () => {
                             <span> (58 customer reviews)</span>
                             <br />
                             <br />
-                            <b>PKR: 100,000</b>
+                            <b>${data.price}</b>
                             <br />
                             <br />
                             <p>
-                                The mobile is compact with its 6.2-inch OLED screen and far
-                                lighter at 168g. It perfectly captures the design, looks, and
-                                feel of the expensive one. It comes with a snapdragon processor
-                                with a 5n chip in it. It has a 200mp camera in the rear 100mp in
-                                front perfect for selfie lovers. It also support HDR content
-                                means you can watch 4K content on it.
+                                {data.des}
                             </p>
                             <div className='delivery-status'>
                                 <div>
@@ -86,21 +97,22 @@ const Product01 = () => {
                                     Available: <b>In Stock</b>
                                 </p>
                                 <p>
-                                    ID: <b>01</b>
+                                    ID: <b>{data.id}</b>
                                 </p>
                                 <p>
-                                    Brand: <b>Apple</b>
+                                    Brand: <b>{data.brand}</b>
                                 </p>
                             </div>
                             <hr />
                             <div>
-                                <select
+                                <Form.Select
                                     value={selectedColor}
                                     onChange={(e) => setSelectedColor(e.target.value)}
+                                    style={{ textAlign: 'center', width: '5rem' }}
+                                    disabled
                                 >
-                                    <option value='grey'>Grey</option>
-                                    <option value='black'>Black</option>
-                                </select>
+                                    <option value={data.color}>{data.color}</option>
+                                </Form.Select>
                                 <div
                                     style={{
                                         backgroundColor: selectedColor,
@@ -112,21 +124,8 @@ const Product01 = () => {
                                 />
                             </div>
                             <div className='cart'>
-                                <Button
-                                    onClick={() => setCount(count >= 1 ? count - 1 : 0)}
-                                    variant='dark'
-                                >
-                                    -
-                                </Button>
-                                <span>{count}</span>
-                                <Button onClick={() => setCount(count + 1)} variant='dark'>
-                                    +
-                                </Button>
-                                <br />
-                                <br />
-                                <br />
                                 <Link to='/cart'>
-                                    <Button variant='dark' className='ms-4'>
+                                    <Button variant='dark' className='ms-4' onClick={() => addItem(data)}>
                                         Add to cart
                                     </Button>
                                 </Link>
@@ -140,4 +139,4 @@ const Product01 = () => {
     )
 }
 
-export default Product01
+export default ProductDetail
