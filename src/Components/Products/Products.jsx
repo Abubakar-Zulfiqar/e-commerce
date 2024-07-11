@@ -129,7 +129,7 @@ const Products = () => {
                     <Col sm={10}>
                         <Row className='mb-5'>
                             <Col className='mt-2' sm={8} style={{ textAlign: 'center' }}>
-                                <h5>12 Products Available</h5>
+                                <h5>{filteredProducts.length || '0'} Products Available</h5>
                             </Col>
                             <Col>
                                 <Form.Select value={selectedCategory}
